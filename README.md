@@ -50,54 +50,6 @@ Playlist YouTube yang digunakan:
 
 > Catatan: video tetap diputar melalui YouTube. Ketersediaan pemutaran di dalam halaman bergantung pada pengaturan video dan layanan YouTube.
 
-## 📁 Struktur File
-
-Pastikan file dan folder berikut berada pada lokasi yang sesuai di repository GitHub Pages:
-
-```text
-repository/
-├── index.html
-├── style.css
-├── script.js
-├── music-diary.html
-├── music-diary.css
-├── README.md
-├── img/
-│   ├── photo1.png
-│   └── yol-playlist-infinite.jpeg
-└── fonts/
-    ├── halimun-webfont.woff
-    └── halimun-webfont.woff2
-```
-
-File `photo1.png` dan folder `fonts/` merupakan aset website utama jika masih digunakan. Pertahankan aset lama yang dibutuhkan oleh halaman lain.
-
-## 🚀 Memasang di GitHub Pages
-
-1. Unduh dan ekstrak paket website yang sudah diperbarui.
-2. Buat cadangan file yang saat ini ada di repository.
-3. Unggah atau ganti file yang telah direvisi sesuai struktur folder di atas.
-4. Pastikan foto playlist berada di `img/yol-playlist-infinite.jpeg`.
-5. Commit perubahan dan push ke branch yang digunakan oleh GitHub Pages.
-6. Tunggu proses deployment selesai, lalu buka website dan coba klik cover playlist.
-
-Jika gambar tidak muncul, periksa kembali nama file, huruf besar/kecil, dan jalur relatif pada HTML. Nama file di GitHub Pages harus cocok persis dengan yang dipanggil kode.
-
-## 🪄 Mengganti Playlist atau Foto
-
-### Mengganti playlist YouTube
-
-Buka `music-diary.html`, lalu cari URL playlist pada bagian kode pemutar dan tautan YouTube. Ganti ID playlist dengan ID playlist milikmu yang baru. Pastikan kedua tautan mengarah ke playlist yang sama.
-
-### Mengganti foto cover
-
-1. Siapkan foto yang ingin digunakan.
-2. Letakkan foto di folder `img/`.
-3. Ubah jalur gambar pada `music-diary.html` agar menunjuk ke nama file yang baru.
-4. Simpan perubahan, commit, dan periksa kembali website.
-
-Gunakan foto yang kamu miliki atau yang penggunaannya memang diizinkan. Jika foto berasal dari pihak lain, ikuti ketentuan kredit dan lisensinya.
-
 ## 🩵 Catatan Kecil
 
 Music Diary bukan sekadar daftar lagu. Ini adalah ruang kecil untuk menyimpan hal-hal yang membuat hari terasa lebih menyenangkan — satu lagu, satu kenangan, dan satu warna pastel pada satu waktu. ☁️🎧
