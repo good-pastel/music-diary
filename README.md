@@ -10,7 +10,7 @@ Di sini, warna pastel bertemu dengan playlist yang menemani hari-hari — teruta
 
 ## 🫧 Tentang Music Diary
 
-Music Diary adalah halaman personal yang melengkapi Good Pastel. Jika bagian portfolio menampilkan karya dan perjalanan belajar, halaman ini memberi ruang untuk sisi yang lebih santai: musik yang didengarkan berulang kali, grup favorit, dan sedikit cerita di baliknya.
+[Music Diary](https://good-pastel.github.io/music-diary/) adalah halaman personal yang melengkapi Good Pastel. Jika bagian portfolio menampilkan karya dan perjalanan belajar, halaman ini memberi ruang untuk sisi yang lebih santai: musik yang didengarkan berulang kali, grup favorit, dan sedikit cerita di baliknya.
 
 Yang ada di halaman ini:
 
