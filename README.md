@@ -19,21 +19,6 @@ Yang ada di halaman ini:
 - 💚 **GOT7** — lagu-lagu yang ikut mengisi playlist sehari-hari.
 - 💌 **A Special Little Corner** — ruang apresiasi untuk L · Kim Myung-soo.
 
-## 🎨 Palet Warna Pastel
-
-Tampilan Music Diary terinspirasi dari perpaduan warna pastel yang lembut, ceria, dan dreamy.
-
-| Warna | Kode | Nuansa |
-| --- | --- | --- |
-| 🩵 Pastel Blue | `#B9EAF7` | Segar, ringan, dan menenangkan |
-| 💜 Pastel Lavender | `#D9DDF9` | Lembut dan dreamy |
-| 🌸 Pastel Pink | `#F6CEDC` | Manis dan personal |
-| 🍑 Pastel Peach | `#FFE0C8` | Hangat dan ceria |
-| 🪸 Pastel Coral | `#F2A7AD` | Aksen yang hidup |
-| 🍃 Pastel Mint | `#C9F3E8` | Sejuk dan menyegarkan |
-
-Warna dapat disesuaikan lagi melalui file CSS tanpa mengubah isi halaman.
-
 ## 💿 Yol's Playlist
 
 Bagian playlist menggunakan foto grup INFINITE sebagai **cover khusus** dengan judul **Yol's Playlist**.
@@ -46,17 +31,34 @@ Cara kerjanya:
 
 Playlist YouTube yang digunakan:
 
-[🎧 Buka Yol's Playlist di YouTube](https://youtube.com/playlist?list=PLY2KXk4Vugn9qO6OErDhCBJsnYZ7Muyss)
+[🎧 Buka Yol&#39;s Playlist di YouTube](https://youtube.com/playlist?list=PLY2KXk4Vugn9qO6OErDhCBJsnYZ7Muyss)
 
 > Catatan: video tetap diputar melalui YouTube. Ketersediaan pemutaran di dalam halaman bergantung pada pengaturan video dan layanan YouTube.
 
-## 🩵 Catatan Kecil
+---
+
+### Cara daftar video dimuat ⚠️
+
+Browser meminta daftar video ke backend di Cloudflare Worker. Worker menyimpan API key sebagai secret, lalu meminta data ke endpoint YouTube Data API v3 `playlistItems.list`. Setiap permintaan mengambil maksimal 50 item; jika YouTube mengembalikan `nextPageToken`, browser meminta batch berikutnya melalui Worker. Hasil dari batch-batch tersebut dikumpulkan di browser, lalu ditampilkan 9 video per halaman.
+
+`pageToken` digunakan untuk mengambil batch berikutnya dari API. Tombol Sebelumnya/Berikutnya hanya mengganti 9 video yang terlihat dari hasil yang sudah dimuat. Worker menyimpan cache halaman API selama lima menit untuk mengurangi pemakaian kuota.
+
+### Menyiapkan backend ⚠️
+
+Backend playlist memakai Cloudflare Workers. Untuk menjalankannya:
+
+1. Buat API key di **Google Cloud Console** dan aktifkan YouTube Data API v3. Batasi key tersebut hanya untuk YouTube Data API v3.
+2. Pada direktori repo, pasang Wrangler jika belum tersedia: `npm install --save-dev wrangler`.
+3. Simpan key sebagai secret Worker: `npx wrangler secret put YOUTUBE_API_KEY`.
+4. Deploy Worker: `npx wrangler deploy`. Wrangler akan menampilkan URL Worker, misalnya `https://music-diary-playlist-api.<akun>.workers.dev`.
+5. Pada `index.html`, ganti nilai `PLAYLIST_API_URL` dengan URL tersebut ditambah `/playlist`.
+6. Deploy ulang situs GitHub Pages.
+
+Worker hanya mengizinkan origin `https://good-pastel.github.io` untuk pemanggilan dari browser. Daftar origin pengembangan lokal terdapat di `worker/index.js` dan dapat dihapus setelah tidak diperlukan. Pembatasan origin membantu browser menolak situs lain, tetapi bukan autentikasi—pemanggil non-browser dapat memalsukan header origin. Karena itu gunakan key baru yang dibatasi hanya untuk YouTube Data API v3, pantau kuota, dan jangan pernah memasukkan key tersebut ke `index.html`.
+
+### 🩵 Catatan Kecil
 
 Music Diary bukan sekadar daftar lagu. Ini adalah ruang kecil untuk menyimpan hal-hal yang membuat hari terasa lebih menyenangkan — satu lagu, satu kenangan, dan satu warna pastel pada satu waktu. ☁️🎧
-
-Terima kasih sudah mampir ke sudut kecil ini. Semoga ada lagu yang membuat harimu sedikit lebih cerah! 🌷✨
-
----
 
 <p align="center">
   Made with 💗, pastel colors, and a little bit of music.
