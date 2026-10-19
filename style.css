@@ -47,4 +47,25 @@
 .playlist-video small {
   opacity: .7;
 }
+.playlist-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.playlist-pagination button {
+  border: 0;
+  border-radius: 999px;
+  padding: .6rem 1rem;
+  background: #d9ddf9;
+  color: #34324a;
+  cursor: pointer;
+}
+
+.playlist-pagination button:disabled {
+  opacity: .5;
+  cursor: default;
+}
 @media(max-width:520px){.playlist-play-button{width:62px;height:46px;border-radius:15px}.playlist-play-button i{font-size:2rem}.playlist-cover-title small{font-size:.75rem}.playlist-custom-cover img{object-position:center center}}

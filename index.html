@@ -60,6 +60,7 @@
           </button>
         </div>
         <div id="playlistVideos" class="playlist-videos" aria-live="polite"></div>
+        <div id="playlistPagination" class="playlist-pagination"></div>
         <p class="playlist-footnote"><i class="bi bi-headphones"></i> Press play, take a little break, and enjoy the music.</p>
         <a class="text-link" href="https://youtube.com/playlist?list=PLY2KXk4Vugn9qO6OErDhCBJsnYZ7Muyss" target="_blank" rel="noopener noreferrer">Open playlist on YouTube <i class="bi bi-arrow-up-right"></i></a>
       </div>
@@ -151,35 +152,79 @@ async function loadPlaylistVideos() {
       pageToken = data.nextPageToken || '';
     } while (pageToken);
 
-    list.replaceChildren();
+    const pageSize = 9;
+let currentPage = 0;
 
-    for (const item of videos) {
-      const snippet = item.snippet;
-      const videoId = snippet?.resourceId?.videoId;
-      if (!videoId) continue;
+const validVideos = videos.filter(
+  item => item.snippet?.resourceId?.videoId
+);
 
-      const link = document.createElement('a');
-      link.className = 'playlist-video';
-      link.href = `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}`;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
+function renderPage() {
+  const pageCount = Math.ceil(validVideos.length / pageSize);
+  const pageVideos = validVideos.slice(
+    currentPage * pageSize,
+    (currentPage + 1) * pageSize
+  );
 
-      const image = document.createElement('img');
-      image.src =
-        snippet.thumbnails?.medium?.url ||
-        snippet.thumbnails?.default?.url || '';
-      image.alt = '';
-      image.loading = 'lazy';
+  list.replaceChildren();
 
-      const title = document.createElement('span');
-      title.textContent = snippet.title;
+  for (const item of pageVideos) {
+    const snippet = item.snippet;
+    const videoId = snippet.resourceId.videoId;
 
-      const id = document.createElement('small');
-      id.textContent = `Video ID: ${videoId}`;
+    const link = document.createElement('a');
+    link.className = 'playlist-video';
+    link.href = `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}`;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
 
-      link.append(image, title, id);
-      list.append(link);
-    }
+    const image = document.createElement('img');
+    image.src =
+      snippet.thumbnails?.medium?.url ||
+      snippet.thumbnails?.default?.url || '';
+    image.alt = '';
+    image.loading = 'lazy';
+
+    const title = document.createElement('span');
+    title.textContent = snippet.title;
+
+    const id = document.createElement('small');
+    id.textContent = `Video ID: ${videoId}`;
+
+    link.append(image, title, id);
+    list.append(link);
+  }
+
+  const pagination = document.getElementById('playlistPagination');
+  pagination.replaceChildren();
+
+  const previous = document.createElement('button');
+  previous.textContent = '← Sebelumnya';
+  previous.disabled = currentPage === 0;
+  previous.addEventListener('click', () => {
+    currentPage--;
+    renderPage();
+  });
+
+  const pageLabel = document.createElement('span');
+  pageLabel.textContent = `${currentPage + 1} dari ${pageCount}`;
+
+  const next = document.createElement('button');
+  next.textContent = 'Berikutnya →';
+  next.disabled = currentPage >= pageCount - 1;
+  next.addEventListener('click', () => {
+    currentPage++;
+    renderPage();
+  });
+
+  pagination.append(previous, pageLabel, next);
+}
+
+if (validVideos.length) {
+  renderPage();
+} else {
+  list.textContent = 'Playlist belum berisi video publik.';
+}
 
     if (!videos.length) list.textContent = 'Playlist belum berisi video publik.';
   } catch (error) {
