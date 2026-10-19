@@ -127,3 +127,8 @@
     line-height: 1.5;
   }
 }
+
+/* Hide video ID from playlist cards */
+.playlist-video small {
+  display: none;
+}
