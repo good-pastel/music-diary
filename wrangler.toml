@@ -1,0 +1,6 @@
+name = "music-diary-playlist-api"
+main = "worker/index.js"
+compatibility_date = "2026-10-19"
+
+[observability]
+enabled = true

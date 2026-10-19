@@ -1,0 +1,13 @@
+# Dependencies installed locally
+node_modules/
+
+# Cloudflare Wrangler local state and dev secrets
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+
+# Local environment files (keep example templates)
+.env
+.env.*
+!.env.example
