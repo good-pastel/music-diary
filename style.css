@@ -128,7 +128,9 @@
   }
 }
 
-/* Hide video ID from playlist cards */
-.playlist-video small {
-  display: none;
+
+/* Completely hide YouTube video IDs */
+#playlistVideos .playlist-video small {
+  display: none !important;
 }
+
