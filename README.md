@@ -47,7 +47,7 @@ Browser meminta daftar video ke backend di Cloudflare Worker. Worker menyimpan A
 
 Backend playlist memakai Cloudflare Workers. Untuk menjalankannya:
 
-1. Buat API key di **Google Cloud Console** dan aktifkan YouTube Data API v3. Batasi key tersebut hanya untuk YouTube Data API v3.
+1. Buat API key di **[Google Cloud Console](https://console.cloud.google.com/apis/credentials)** dan aktifkan YouTube Data API v3. Batasi key tersebut hanya untuk YouTube Data API v3.
 2. Pada direktori repo, pasang Wrangler jika belum tersedia: `npm install --save-dev wrangler`.
 3. Simpan key sebagai secret Worker: `npx wrangler secret put YOUTUBE_API_KEY`.
 4. Deploy Worker: `npx wrangler deploy`. Wrangler akan menampilkan URL Worker, misalnya `https://music-diary-playlist-api.<akun>.workers.dev`.
