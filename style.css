@@ -23,4 +23,28 @@
 .playlist-cover-title small{font-size:.9rem;letter-spacing:.03em}
 .playlist-custom-cover:focus-visible{outline:4px solid #a8b7f0;outline-offset:-5px}
 .playlist-player iframe{display:block;position:absolute;inset:0}
+.playlist-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.playlist-video {
+  display: grid;
+  gap: .5rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.playlist-video img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.playlist-video small {
+  opacity: .7;
+}
 @media(max-width:520px){.playlist-play-button{width:62px;height:46px;border-radius:15px}.playlist-play-button i{font-size:2rem}.playlist-cover-title small{font-size:.75rem}.playlist-custom-cover img{object-position:center center}}
