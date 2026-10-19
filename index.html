@@ -119,7 +119,7 @@ const PLAYLIST_ID = 'PLY2KXk4Vugn9qO6OErDhCBJsnYZ7Muyss';
 const list = document.getElementById('playlistVideos');
 
 async function loadPlaylistVideos() {
-  if (!list || API_KEY === 'AIzaSyC39McoCIwkosoR3S5_xDXvFDQVMI8pj0E') {
+  if (!list || !API_KEY) {
     if (list) list.textContent = 'Tambahkan API key untuk memuat daftar lagu.';
     return;
   }
